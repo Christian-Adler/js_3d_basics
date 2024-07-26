@@ -31,11 +31,21 @@ controls.dampingFactor = 0.01;
 const scene = new THREE.Scene();
 // const loader = new THREE.TextureLoader();
 
-const points = spline.getPoints(100);
-const geometry = new THREE.BufferGeometry().setFromPoints(points);
-const material = new THREE.LineBasicMaterial({color: 0xff0000});
-const line = new THREE.Line(geometry, material);
-scene.add(line);
+// const points = spline.getPoints(100);
+// const geometry = new THREE.BufferGeometry().setFromPoints(points);
+// const material = new THREE.LineBasicMaterial({color: 0xff0000});
+// const line = new THREE.Line(geometry, material);
+// scene.add(line);
+
+const tubeGeo = new THREE.TubeGeometry(spline, 222, 0.65, 16, true);
+const tubeMat = new THREE.MeshStandardMaterial(
+    {
+      color: 0xffffff,
+      // side: THREE.DoubleSide,
+      wireframe: true
+    });
+const tube = new THREE.Mesh(tubeGeo, tubeMat);
+scene.add(tube);
 
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
 scene.add(hemiLight);
