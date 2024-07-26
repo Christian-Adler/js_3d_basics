@@ -1,5 +1,8 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
+import {EffectComposer} from "jsm/postprocessing/EffectComposer.js";
+import {RenderPass} from "jsm/postprocessing/RenderPass.js";
+import {UnrealBloomPass} from "jsm/postprocessing/UnrealBloomPass.js";
 import spline from "./mjs/spline.mjs";
 
 let width = window.innerWidth;
@@ -31,6 +34,16 @@ controls.dampingFactor = 0.01;
 const scene = new THREE.Scene();
 scene.fog = new THREE.FogExp2(0x000000, 0.3);
 // const loader = new THREE.TextureLoader();
+
+// post-processing
+const renderScene = new RenderPass(scene, camera);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(width, height), 1.5, 0.4, 100);
+bloomPass.threshold = 0.002;
+bloomPass.strength = 3.5;
+bloomPass.radius = 0;
+const composer = new EffectComposer(renderer);
+composer.addPass(renderScene);
+composer.addPass(bloomPass);
 
 // const points = spline.getPoints(100);
 // const geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -99,7 +112,8 @@ function animate(t = 0) {
   // Scene Updates
   updateCamera(t);
   // Render & loop
-  renderer.render(scene, camera);
+  // renderer.render(scene, camera);
+  composer.render(scene, camera);
   controls.update();
   requestAnimationFrame(animate);
 }
