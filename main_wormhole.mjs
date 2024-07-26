@@ -50,10 +50,19 @@ scene.add(tube);
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
 scene.add(hemiLight);
 
+const updateCamera = (t) => {
+  const time = t * 0.5;
+  const loopTime = 20 * 1000;
+  const posOfLoop = (time % loopTime) / loopTime;
+  const pos = tubeGeo.parameters.path.getPointAt(posOfLoop);
+  const lookAt = tubeGeo.parameters.path.getPointAt((posOfLoop + 0.01) % 1);
+  camera.position.copy(pos);
+  camera.lookAt(lookAt);
+};
 
-function animate(/*t = 0*/) {
+function animate(t = 0) {
   // Scene Updates
-
+  updateCamera(t);
   // Render & loop
   renderer.render(scene, camera);
   controls.update();
