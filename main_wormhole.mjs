@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
+import spline from "./mjs/spline.mjs";
 
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -30,13 +31,11 @@ controls.dampingFactor = 0.01;
 const scene = new THREE.Scene();
 // const loader = new THREE.TextureLoader();
 
-const geo = new THREE.BoxGeometry();
-const mat = new THREE.MeshStandardMaterial({
-  color: 0xffff00,
-  // flatShading: true,
-});
-const mesh = new THREE.Mesh(geo, mat);
-scene.add(mesh);
+const points = spline.getPoints(100);
+const geometry = new THREE.BufferGeometry().setFromPoints(points);
+const material = new THREE.LineBasicMaterial({color: 0xff0000});
+const line = new THREE.Line(geometry, material);
+scene.add(line);
 
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
 scene.add(hemiLight);
