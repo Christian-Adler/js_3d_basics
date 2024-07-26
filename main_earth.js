@@ -36,8 +36,11 @@ earthGroup.add(earthMesh);
 const stars = getStarfield({numStars: 2000});
 scene.add(stars);
 
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
-scene.add(hemiLight);
+// const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
+// scene.add(hemiLight);
+const sunLight = new THREE.DirectionalLight(0xffffff);
+sunLight.position.set(-2, 0.5, 1.5);
+scene.add(sunLight);
 
 function animate(/*t = 0*/) {
   requestAnimationFrame(animate);
