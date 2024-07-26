@@ -46,7 +46,12 @@ const tubeMat = new THREE.MeshBasicMaterial(
       wireframe: true
     });
 const tube = new THREE.Mesh(tubeGeo, tubeMat);
-scene.add(tube);
+// scene.add(tube);
+
+const edges = new THREE.EdgesGeometry(tubeGeo, 0.5);
+const edgesMaterial = new THREE.LineBasicMaterial({color: 0xffffff});
+const tubeLines = new THREE.LineSegments(edges, edgesMaterial);
+scene.add(tubeLines);
 
 const updateCamera = (t) => {
   const time = t * 0.5;
