@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import {OrbitControls} from 'jsm/controls/OrbitControls.js';
+import getStarfield from "./js/starfield.mjs";
 
 const w = window.innerWidth;
 const h = window.innerHeight;
@@ -31,6 +32,9 @@ const mat = new THREE.MeshStandardMaterial({
 });
 const earthMesh = new THREE.Mesh(geo, mat);
 earthGroup.add(earthMesh);
+
+const stars = getStarfield({numStars: 2000});
+scene.add(stars);
 
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
 scene.add(hemiLight);
