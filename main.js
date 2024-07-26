@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import {OrbitControls} from 'jsm/controls/OrbitControls.js';
 
 const w = window.innerWidth;
 const h = window.innerHeight;
@@ -14,6 +15,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.z = 2;
 
 const scene = new THREE.Scene();
+
+const controls = new OrbitControls(camera, renderer.domElement);
 
 const geo = new THREE.IcosahedronGeometry(1, 2);
 // BasicMaterial don't interact with lights
