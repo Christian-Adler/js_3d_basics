@@ -18,6 +18,10 @@ controls.dampingFactor = 0.01;
 
 const loader = new THREE.TextureLoader();
 
+const earthGroup = new THREE.Group();
+earthGroup.rotation.z = -23.4 * Math.PI / 180;
+scene.add(earthGroup);
+
 const geo = new THREE.IcosahedronGeometry(1, 12);
 const mat = new THREE.MeshStandardMaterial({
   // color: 0xffff00,
@@ -26,15 +30,15 @@ const mat = new THREE.MeshStandardMaterial({
   // map: loader.load('./assets/textures/moonmap4k.jpg'),
 });
 const earthMesh = new THREE.Mesh(geo, mat);
-scene.add(earthMesh);
+earthGroup.add(earthMesh);
 
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
 scene.add(hemiLight);
 
-function animate(t = 0) {
+function animate(/*t = 0*/) {
   requestAnimationFrame(animate);
 
-  earthMesh.rotation.x += 0.001;
+  // earthMesh.rotation.x += 0.001;
   earthMesh.rotation.y += 0.001;
 
   renderer.render(scene, camera);
