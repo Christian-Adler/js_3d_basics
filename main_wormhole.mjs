@@ -29,6 +29,7 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.01;
 
 const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x000000, 0.3);
 // const loader = new THREE.TextureLoader();
 
 // const points = spline.getPoints(100);
@@ -38,7 +39,7 @@ const scene = new THREE.Scene();
 // scene.add(line);
 
 const tubeGeo = new THREE.TubeGeometry(spline, 222, 0.65, 16, true);
-const tubeMat = new THREE.MeshStandardMaterial(
+const tubeMat = new THREE.MeshBasicMaterial(
     {
       color: 0xffffff,
       // side: THREE.DoubleSide,
@@ -46,9 +47,6 @@ const tubeMat = new THREE.MeshStandardMaterial(
     });
 const tube = new THREE.Mesh(tubeGeo, tubeMat);
 scene.add(tube);
-
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0x505050);
-scene.add(hemiLight);
 
 const updateCamera = (t) => {
   const time = t * 0.5;
