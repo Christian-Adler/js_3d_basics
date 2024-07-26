@@ -23,9 +23,17 @@ const geo = new THREE.IcosahedronGeometry(1, 2);
 // StandardMaterial interacts with lights
 const mat = new THREE.MeshStandardMaterial({
   color: 0xffffff,
+  flatShading: true, // allows to see the facets
 });
 const mesh = new THREE.Mesh(geo, mat);
 scene.add(mesh);
+
+const wireMat = new THREE.MeshBasicMaterial({
+  color: 0xffffff,
+  wireframe: true,
+});
+const wireMesh = new THREE.Mesh(geo, wireMat);
+scene.add(wireMesh);
 
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000);
 scene.add(hemiLight);
