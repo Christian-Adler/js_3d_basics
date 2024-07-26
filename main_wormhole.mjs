@@ -51,7 +51,7 @@ composer.addPass(bloomPass);
 // const line = new THREE.Line(geometry, material);
 // scene.add(line);
 
-const tubeGeo = new THREE.TubeGeometry(spline, 222, 0.65, 16, true);
+const tubeGeo = new THREE.TubeGeometry(spline, 222, 0.65, 32, true);
 const tubeMat = new THREE.MeshBasicMaterial(
     {
       color: 0xffffff,
@@ -62,7 +62,7 @@ const tube = new THREE.Mesh(tubeGeo, tubeMat);
 // scene.add(tube);
 
 const edges = new THREE.EdgesGeometry(tubeGeo, 0.5);
-const edgesMaterial = new THREE.LineBasicMaterial({color: 0xffffff});
+const edgesMaterial = new THREE.LineBasicMaterial({color: 0x00aaff});
 const tubeLines = new THREE.LineSegments(edges, edgesMaterial);
 scene.add(tubeLines);
 
