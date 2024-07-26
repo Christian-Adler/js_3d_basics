@@ -33,6 +33,16 @@ const mat = new THREE.MeshStandardMaterial({
 const earthMesh = new THREE.Mesh(geo, mat);
 earthGroup.add(earthMesh);
 
+const lightsMat = new THREE.MeshBasicMaterial({
+  // color: 0x00ff00,
+  // transparent: true,
+  // opacity: 0.4,
+  map: loader.load('./assets/textures/03_earthlights1k.jpg'),
+  blending: THREE.AdditiveBlending
+});
+const lightsMesh = new THREE.Mesh(geo, lightsMat);
+earthGroup.add(lightsMesh);
+
 const stars = getStarfield({numStars: 2000});
 scene.add(stars);
 
@@ -47,6 +57,7 @@ function animate(/*t = 0*/) {
 
   // earthMesh.rotation.x += 0.001;
   earthMesh.rotation.y += 0.001;
+  lightsMesh.rotation.y += 0.001;
 
   renderer.render(scene, camera);
   controls.update();
