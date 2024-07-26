@@ -17,6 +17,8 @@ camera.position.z = 2;
 const scene = new THREE.Scene();
 
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.01;
 
 const geo = new THREE.IcosahedronGeometry(1, 2);
 // BasicMaterial don't interact with lights
@@ -49,6 +51,7 @@ function animate(t = 0) {
   // mesh.scale.setScalar(Math.cos(t * 0.001) + 1);
 
   renderer.render(scene, camera);
+  controls.update();
 }
 
 animate();
