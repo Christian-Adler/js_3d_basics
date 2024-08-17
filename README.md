@@ -4,6 +4,8 @@ Getting started with threejs
 
 https://www.youtube.com/watch?v=UMqNHi1GDAE
 
+![Preview](https://github.com/Christian-Adler/js_3d_basics/blob/main/preview.jpg?raw=true)
+
 ## WebStorm Debug
 
 CORS Problem
